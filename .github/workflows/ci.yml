@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  app-core-linux:
+    runs-on: ubuntu-24.04
+    container: swift:6.3.3-noble
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint
+        run: swift format lint --strict --configuration .swift-format -r Packages HelloApp
+      - name: Test
+        working-directory: Packages/AppCore
+        run: swift test
+
+  helloapp-macos:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build HelloApp (SwiftPM)
+        run: |
+          cd HelloApp
+          swift build -c release
+          echo "SwiftPM build succeeded for HelloApp"
+      - name: Build HelloApp (Xcode - Simulator)
+        run: |
+          cd HelloApp
+          xcodebuild build -scheme HelloApp -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest'
+          echo "Xcode build for simulator succeeded"
