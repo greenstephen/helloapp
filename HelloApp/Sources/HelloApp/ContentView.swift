@@ -1,5 +1,5 @@
-import SwiftUI
 import AppCore
+import SwiftUI
 
 struct ContentView: View {
     var body: some View {
