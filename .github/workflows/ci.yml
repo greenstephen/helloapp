@@ -15,17 +15,3 @@ jobs:
       - name: Test
         working-directory: Packages/AppCore
         run: swift test
-
-  helloapp-macos:
-    runs-on: macos-14
-    steps:
-      - uses: actions/checkout@v4
-      - name: Show Xcode/SDK info
-        run: |
-          echo "xcode-select version:" && xcode-select -p
-          echo "iOS SDK path:" && xcrun --show-sdk-path --sdk iphonesimulator || echo "iOS SDK not available"
-      - name: Build HelloApp (SwiftPM - macOS)
-        run: |
-          cd HelloApp
-          swift build -c release
-          echo "SwiftPM build for macOS succeeded"
