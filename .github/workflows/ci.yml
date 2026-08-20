@@ -23,6 +23,6 @@ jobs:
       - name: Build HelloApp (iOS Simulator via xcodebuild)
         run: |
           cd HelloApp
-          xcodebuild -create-xcodeproj -allowProvisioningUpdates 2>/dev/null
+          xcodebuild -create-xcodeproj -allowProvisioningUpdates
+          xcodebuild -list
           xcodebuild build -scheme HelloApp -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' -allowProvisioningUpdates
-          echo "Xcode build for simulator succeeded"
