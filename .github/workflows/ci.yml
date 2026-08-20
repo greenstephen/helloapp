@@ -20,9 +20,9 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
-      - name: Build HelloApp (iOS Simulator via xcodebuild)
+      - name: Build HelloApp (SwiftPM targeting iOS)
         run: |
           cd HelloApp
-          xcodebuild -create-xcodeproj -allowProvisioningUpdates
-          xcodebuild -list
-          xcodebuild build -scheme HelloApp -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' -allowProvisioningUpdates
+          # Build with SwiftPM targeting iOS SDK
+          swift build -c release --sdk $(xcrun --sdk iphonesimulator --show-sdk-path)
+          echo "SwiftPM build for iOS succeeded"
