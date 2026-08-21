@@ -50,7 +50,7 @@ xcodebuild build -scheme HelloApp -destination 'platform=iOS Simulator,name=iPho
 
 ### 4. With Apple Developer Account
 
-Sign in to Xcode → Preferences → Accounts → Add Apple ID. Enable "Automatically manage signing" in Project Settings. Then build for device:
+You already have an account! Sign in to Xcode → Preferences → Accounts → Add Apple ID. Enable "Automatically manage signing" in Project Settings (Xcode generates certificates/profiles automatically). Then build for device:
 ```bash
 xcodebuild -scheme HelloApp -destination 'generic/platform=iOS' archive
 ```
